@@ -27,10 +27,10 @@ public class Hosts
     /// Gets a list of running processes on the system.
     /// </summary>
     /// <returns>List of ProcessResults.</returns>
-    public static SharpSploitResultList<ProcessResult> GetProcessList()
+    public static ProcessResultList<ProcessResult> GetProcessList()
     {
         Process[] processes = Process.GetProcesses();
-        SharpSploitResultList<ProcessResult> results = new SharpSploitResultList<ProcessResult>();
+        ProcessResultList<ProcessResult> results = new ProcessResultList<ProcessResult>();
         foreach (Process process in processes)
         {
             results.Add(new ProcessResult(process.Id, 0, process.ProcessName));
@@ -42,28 +42,28 @@ public class Hosts
 /// <summary>
 /// ProcessResult represents a running process, used with the GetProcessList() function.
 /// </summary>
-public sealed class ProcessResult : SharpSploitResult
+public sealed class ProcessResult : ProcessResultt
 {
     public int Pid { get; } = 0;
     public int Ppid { get; } = 0;
     public string Name { get; } = "";
-    protected internal override IList<SharpSploitResultProperty> ResultProperties
+    protected internal override IList<ProcessResultProperty> ResultProperties
     {
         get
         {
-            return new List<SharpSploitResultProperty>
+            return new List<ProcessResultProperty>
             {
-                new SharpSploitResultProperty
+                new ProcessResultProperty
                 {
                     Name = "Pid",
                     Value = this.Pid
                 },
-                new SharpSploitResultProperty
+                new ProcessResultProperty
                 {
                     Name = "Ppid",
                     Value = this.Ppid
                 },
-                new SharpSploitResultProperty
+                new ProcessResultProperty
                 {
                     Name = "Name",
                     Value = this.Name
@@ -80,16 +80,16 @@ public sealed class ProcessResult : SharpSploitResult
     }
 }
 
-public sealed class GenericObjectResult1 : SharpSploitResult
+public sealed class GenericObjectResult1 : ProcessResultt
 {
     public object Result { get; }
-    protected internal override IList<SharpSploitResultProperty> ResultProperties
+    protected internal override IList<ProcessResultProperty> ResultProperties
     {
         get
         {
-            return new List<SharpSploitResultProperty>
+            return new List<ProcessResultProperty>
                 {
-                    new SharpSploitResultProperty
+                    new ProcessResultProperty
                     {
                         Name = this.Result.GetType().Name,
                         Value = this.Result
@@ -105,7 +105,7 @@ public sealed class GenericObjectResult1 : SharpSploitResult
 }
 
 
-public class SharpSploitResultList<T> : IList<T> where T : SharpSploitResult
+public class ProcessResultList<T> : IList<T> where T : ProcessResultt
 {
     private List<T> Results { get; } = new List<T>();
 
@@ -147,11 +147,11 @@ public class SharpSploitResultList<T> : IList<T> where T : SharpSploitResult
             }
             builder1.AppendLine();
             builder1.AppendLine(builder2.ToString());
-            foreach (SharpSploitResult result in this.Results)
+            foreach (ProcessResultt result in this.Results)
             {
                 for (int i = 0; i < result.ResultProperties.Count; i++)
                 {
-                    SharpSploitResultProperty property = result.ResultProperties[i];
+                    ProcessResultProperty property = result.ResultProperties[i];
                     string ValueString = property.Value.ToString();
                     builder1.Append(ValueString);
                     if (i != result.ResultProperties.Count - 1)
@@ -224,15 +224,15 @@ public class SharpSploitResultList<T> : IList<T> where T : SharpSploitResult
     }
 }
 
-public abstract class SharpSploitResult
+public abstract class ProcessResultt
 {
-    protected internal abstract IList<SharpSploitResultProperty> ResultProperties { get; }
+    protected internal abstract IList<ProcessResultProperty> ResultProperties { get; }
 }
 
 /// <summary>
-/// SharpSploitResultProperty represents a property that is a member of a SharpSploitResult's ResultProperties.
+/// ProcessResultProperty represents a property that is a member of a ProcessResultt's ResultProperties.
 /// </summary>
-public class SharpSploitResultProperty
+public class ProcessResultProperty
 {
     public string Name { get; set; }
     public object Value { get; set; }

