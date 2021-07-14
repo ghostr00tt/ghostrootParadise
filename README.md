@@ -15,7 +15,7 @@ Note: Currently working in local network, WAN coming soon :)
 - File/directory viewing, downloading, creating, running operations
 - Information of running applications (Process List)
 - Cmd Shell
-- 
+
 Available Commands
 - beep x(eg beep 2)
 - whoami
