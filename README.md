@@ -1,5 +1,7 @@
 # ghostrootParadise
+
 #ENG
+
 .Net Core based C2(Command&Control) server.
 
 #Current Features
