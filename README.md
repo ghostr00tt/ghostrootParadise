@@ -29,6 +29,7 @@ Available Commands
 - ghost ls (view files in directory)
 - ghost ps(View running apps)
 - ghost cmd(Running command on command line)
+- 
 #TR
 
 .Net Core tabanlı C2(Command&Control) server.
