@@ -8,7 +8,6 @@ Note: Currently working in local network, WAN coming soon :)
 
 #Current Features
 
-(This field will be updated in all additions I made to this project, which I started on 13.07.2021)
 
 - Secure communication with Aes256 encryption algorithm.
 - Client-Server communication takes place with UDP for now (HTTP will come soon).
@@ -38,7 +37,6 @@ Not:Şimdilik lokal ağda çalışmaktadır, çok yakında WAN :)
 
 #Güncel Özellikler
 
-(13.07.2021 tarihinde başladığım bu projeye yaptığım bütün eklemelerde bu alan güncellenecektir)
 
 - Aes256 şifreleme algoritması ile güvenli iletişim.
 - Client-Server haberleşmesi şimdilik UDP ile gerçekleşiyor(Yakında HTTP gelecek).
